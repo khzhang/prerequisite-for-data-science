@@ -1,0 +1,268 @@
+% BEGIN -- SETUP DOCUMENT (OVERLEAF) --
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=apa]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\addbibresource{ref.bib}
+\let\cite\parencite
+\begin{document}
+% END -- SETUP DOCUMENT (OVERLEAF) --
+
+% BEGIN -- SETUP DOCUMENT (TEXMAKER) --
+% \documentclass[a4paper,12pt]{article}
+% \usepackage{hyperref}
+% \usepackage{apacite}
+% \begin{document}
+% \bibliographystyle{apacite}
+% END -- SETUP DOCUMENT (TEXMAKER) --
+
+\title{Prerequisite knowledge for data science}
+\author{Kunhui Zhang}
+\date{March 22, 2017}
+\maketitle
+
+\section{Calculus}
+Logarithm function $log(x)$, exponential function $exp(x)$, and polynomial function $a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x^1 + a_0x^0$.
+
+\subsection{Property}
+\textbf{Exponential function}
+\begin{itemize}
+\item $e^{a + b} = e^{a}e^{b}$
+\item $e^{a - b} = e^{a}/e^{b}$
+\item $ln_ee = 1$
+\item $e^x = \sum_{k = 0}^{\infty} \frac{x^k}{k!}$
+\end{itemize}
+\textbf{Logarithm function}
+\begin{itemize}
+\item $ln(ab) = ln(a) + ln(b)$
+\item $ln(a/b) = ln(a) - ln(b)$
+\item $ln(1) = 0$
+\end{itemize}
+\textbf{Polynomial function} \\
+Solve equations.
+
+\subsection{Limit Review}
+A limit is what happens to a function when the input approaches, but does not necessarily reach, a certain value. The general notation for a limit is: $$\lim\limits_{x \rightarrow c} f(x) = L$$
+\\
+\textbf{Rules} \\
+We set an example to review.
+\begin{equation}
+f(x) = xe^{-x} + \frac{3x}{x^2 + 1} + 2
+\end{equation}
+\\
+From above, let's find the limit for this function as $x$ goes to $\infty$. \\
+%Answer: 2 
+\\
+Here we introduce two ways to think about this question. First, $xe^{-x}$ can be rewrite as $x/e^{x}$. Note that $e^{x}$ grows faster than $x$, and $x^2 + 1$ also increases faster than $3x$. So the answer should be 2. Another way is just use the L'Hospital's Rule, we differentiate the numerator and differentiate the denominator and then take the limit. After that, we can still get the same answer. (Write on board about the procedure)\\
+\\
+And if we divide the function into two part, we have the nice rules below: \cite{cal}\\
+Assume $\lim\limits_{x \rightarrow c} f(x) = L$ and $\lim\limits_{x \rightarrow c} g(x) = M$.
+\begin{enumerate}
+\item \textbf{Addition}: 
+ $$\lim\limits_{x \rightarrow c} [f(x) + g(x)] = \lim\limits_{x \rightarrow c} f(x) + \lim\limits_{x \rightarrow c} g(x) = L + M$$
+\item \textbf{Subtraction}: 
+ $$\lim\limits_{x \rightarrow c} [f(x) - g(x)]= \lim\limits_{x \rightarrow c} f(x) - \lim\limits_{x \rightarrow c} g(x) = L - M$$
+\item \textbf{Multiplication}: 
+ $$\lim\limits_{x \rightarrow c} [f(x) * g(x)] = \lim\limits_{x \rightarrow c} f(x) * \lim\limits_{x \rightarrow c} g(x) = L * M$$
+\item \textbf{Division}: 
+ $$\lim\limits_{x \rightarrow c} [f(x) / g(x)] = \lim\limits_{x \rightarrow c} f(x) / \lim\limits_{x \rightarrow c} g(x) = L / M \ \ M \neq 0$$
+  \item \textbf{Power}
+$$\lim\limits_{x \rightarrow c} f(x)^n = \Big(\lim\limits_{x \rightarrow c} f(x)\Big)^n$$
+ \item \textbf{Constant}
+$$\lim\limits_{x \rightarrow c} k = k$$
+ \item \textbf{Identity}
+$$\lim\limits_{x \rightarrow c} x = c$$
+\end{enumerate}
+\subsection{Derivation}
+Still same example, let's take the derivation.
+\begin{equation*}
+\begin{split}
+f'(x) = & xe^{-x} + \frac{3x}{x^2 + 1} + 2 \\
+= & -xe^{-x} + e^{-x} + \frac{3(x^2 + 1) - 6x^2}{(x^2 + 1)^2} \\
+= & (1 - x)e^{-x} + \frac{3(1 - x^2)}{(x^2 + 1)^2}
+\end{split}
+\end{equation*}
+\subsection{Integral}
+\textbf{Integral of common function} \\
+Take an example for a function $\int_{2}^{5} (x^2 + 8x -5)dx$ \\
+\begin{equation*}
+\begin{split}
+& \int_{2}^{5} (x^2 + 8x -5)dx \\
+= & \left. \frac{1}{3} x^3 + 4x^2 -5x\right|_2^5 \\ 
+= & 108
+\end{split}
+\end{equation*}
+\\
+\textbf{Integral by part} \\
+Formula: $\int udv = uv - \int vdu$ \\
+Example: $\int 3xe^{-x}dx$
+\begin{equation*}
+\begin{split}
+& \int 3xe^{-x} dx \\
+= & \int 3x d -e^{-x} \\
+= & -3xe^{-x} - \int -e^{-x}d(3x) \\
+= & -3xe^{-x} - \int -3e^{-x}dx \\
+= & -3xe^{-x} - 3e^{-x} + C
+\end{split}
+\end{equation*}
+\subsection{Optimal}
+If $f(x)$ is differentiable and convex/concave function, then the solution to $f'(x) = 0$ is the min/max point to $f(x)$.\\
+\\
+Eg: $x^2(e^x + 1) + 2$
+First, find $f'(x)$
+\begin{equation*}
+\begin{split}
+f'(x) = & \Big( x^2(e^x + 1) + 2\Big)' \\
+= & x^2e^x + 2x(e^x + 1) 
+\end{split}
+\end{equation*}
+Set $f'(x) = 0$. Note that the only possible solution for $x^2e^x + 2x(e^x + 1) = 0$ is $x = 0$. Thus, $x = 0$ is the minimum point for $f(x)$ with minimum value 2.
+\section{Probability} 
+\subsection{Conditional Probability}
+For event A and B, if $P(B) \neq 0$ the conditional probability of any event A given B is
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+In other words, $P(A|B)$ is the probability of event A after observing the occurrence of event B. \\
+\\
+\textbf{Independent} \\
+If event A and B are independent, then $P(A|B) = P(A)$ or $P(A \cap B) = P(A)P(B)$, which means B does not affect the probability of A.\\
+\\
+\textbf{Bayes Rule}\\
+Formula: $$P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A \cap B)}{P(A \cap B) + P(A \cap B^c)} = \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^c)P(B^c)}$$
+\\
+Eg(\cite{baye}): You might be interested in finding out a patient’s probability of having liver disease if they are an alcoholic. “Being an alcoholic” is the test (kind of like a litmus test) for liver disease.\\
+\\
+A could mean the event “Patient has liver disease.” Past data tells you that 10\% of patients entering your clinic have liver disease. $P(A) = 0.10$. \\
+B could mean the litmus test that “Patient is an alcoholic.” Five percent of the clinic’s patients are alcoholics. $P(B) = 0.05$.\\
+You might also know that among those patients diagnosed with liver disease, 7\% are alcoholics. This is your $B|A$: the probability that a patient is alcoholic, given that they have liver disease, is 7\%.
+Bayes’ theorem tells you:
+$P(A|B) = (0.07 * 0.1)/0.05 = 0.14$
+\subsection{One random variable} \cite{pro} \\
+\textbf{Discrete random variables}\\
+\begin{itemize}
+\item $X \sim Bernoli(p)$ (where $0 \leq p \leq 1$): one if a coin with heads probability p comes up heads, zero otherwise.
+\[
+ p(x) = 
+  \begin{cases} 
+   p & \text{if } p = 1 \\
+   1 - p      & \text{if } p = 0
+  \end{cases}
+\]
+\item $X \sim Binomial(n,p)$ (where $0 \leq p \leq 1$): the number of heads in n independent flips of a coin with heads probability p.
+$$p(x) = \binom{n}{x} p^x(1 - p)^{n - x}$$
+\item $X \sim Geometric(p)$ (where $p > 0$): the number of flips of a coin with heads probability p until the first heads.:
+$$p(x) = p(1 - p)^{x - 1}$$
+\item $X \sim Poisson(\lambda)$ (where $\lambda > 0$): a probability distribution over the nonnegative integers used for modeling the frequency of rare events. Eg(\cite{pois}): The number of calls coming per minute into a hotels reservation center is Poisson random variable with mean 3, find the probability for next day 5 calls. $\lambda = 3$, average number of call a day; $x = 5$, the number of calls next day.
+$$p(x) = e^{\lambda} \frac{\lambda^x}{x!}$$
+\end{itemize}
+\textbf{Continuous random variables} \\
+\begin{itemize}
+\item $X \sim Unif(a,b)$ (where $a < b$): equal probability density to every value between a and b on the real line. A volcano erupts once every 10 days. What is the probability you will see it erupt within 5 days? ($\int_{0}^{5} 1/10dx$)
+\[
+ f(x) = 
+  \begin{cases} 
+   \frac{1}{b - a} & \text{if } a \leq x \leq b \\
+   0      & \text{if otherwise}
+  \end{cases}
+\]
+\item $X \sim Exp(\lambda)$ (where $\lambda > 0$): Generally the exponential distribution describes waiting time between Poisson occurrences. Eg: If jobs arrive every 15 seconds on average, $\lambda = 4$ per minute, what is the probability of waiting less than or equal to 30 seconds, i.e 0.5 min? ($\int_{0}^{0.5} 4e^{-4t}dt$)
+\[
+ f(x) = 
+  \begin{cases} 
+   \lambda e^{-\lambda x} & \text{if } x \geq 0 \\
+   0      & \text{if otherwise}
+  \end{cases}
+\]
+
+\item $X \sim Norm(\mu, \sigma^2)$
+Eg:  the height of 95\% of students at UW are between 1.0m and 1.6m.
+$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}exp\Big (-\frac{1}{2\sigma^2}(x - \mu)^2) \Big )$$
+\end{itemize}
+\textbf{Expectation and Variance} \\
+$$Var(X) = E[(X - E[X])^2] = E[X^2] - E[X]^2$$
+Eg(Continuous case): Calculate the mean and the variance of the uniform random variable X with PDF $f_X(x) = 1$, $\exists x \in [0,1]$, 0 otherwise.
+$$E[X] = \int_{-\infty}^{\infty} xf_X(x) dx = \int_{0}^{1} xdx = \frac{1}{2} $$
+$$E[X^2] = \int_{-\infty}^{\infty} x^2f_X(x) dx = \int_{0}^{1} x^2dx = \frac{1}{3}$$
+$$Var(X) = E[X^2] - E[X]^2 = \frac{1}{3} - \frac{1}{4} = \frac{1}{12}$$
+Eg(Discrete case): Cat raise. 5 students raise no cat, 2 raise 1, and 1 raises 2 cats.
+$$E[X] = 5/8 * 0 + 1/4 * 1 + 1/8 *2 = 0.5$$
+$$E[X^2] = 5/8 * 0 + 1/4 * 1^2 + 1/8 *2^2 = 1.25$$
+$$Var(X) = E[X^2] - E[X]^2 = 1.25 - 0.25 = 1$$
+\subsection{Two random variable}
+\textbf{Joint and Marginal Distribution} \\
+The formula for joint cumulative distribution function of X and Y:
+
+$$F_{XY}(x,y) = P(X \leq x, Y \leq y)$$
+And the marginal distribution is:
+$$F_X(x) = \lim \limits_{y \rightarrow \infty}  F_{XY}(x,y) dy$$
+$$F_Y(y) = \lim \limits_{x \rightarrow \infty}  F_{XY}(x,y) dx$$
+\textbf{Joint and marginal probability mass functions} \\
+The formula for joint probability mass function of X and Y:
+$$p_{XY}(x,y) = P(X = x, Y = y)$$
+And the marginal probability mass functions is:
+$$p_X(x) = \sum_{y} p_{XY}(x,y)$$
+$$p_Y(y) = \sum_{x} p_{XY}(x,y)$$
+\textbf{Joint and marginal probability density functions} \\
+The formula for joint probability mass function of X and Y:
+$$f_{XY}(x,y) = \frac{\partial^2 F_{XY}(x,y)}{\partial x \partial y}$$
+And the marginal probability mass functions is:
+$$f_X(x) = \int_{-\infty}^{\infty} f_{XY}(x,y) dy$$
+$$f_Y(y) = \int_{-\infty}^{\infty} f_{XY}(x,y) dx$$
+\\
+\textbf{Conditional distribution} \\
+Conditional distributions describes the probability distribution over Y, when we know that X must take on a certain value x. In the discrete case, when $p_X(x) \neq 0$, the conditional probability
+mass function of X given Y is 
+$$p_{Y|X}(y|x) = \frac{p_{XY}(x,y)}{p_X(x)}$$
+In the continuous case, when $f_X(x) \neq 0$, analogy to discrete case, the conditional probability density function of X given Y is 
+$$f_{Y|X}(y|x) = \frac{f_{XY}(x,y)}{f_X(x)}$$
+\\
+\textbf{Independence} \\
+Two random variables X and Y are independent if $F_{XY}(x,y) = F_X(x)F_Y(y)$ for all values of x and y. In discrete case, $p_{XY}(x,y) = p_X(x)p_Y(y)$; in continuous case, $f_{XY}(x,y) = f_X(x)f_Y(y)$. \\
+\\
+Eg(\cite{marg}):
+Given 
+\[
+ f_{XY}(x,y) = 
+  \begin{cases} 
+   xy^2e^{-y} & \text{if } 0<y<\infty, 0<x<1 \\
+   0      & \text{if otherwise}
+  \end{cases}
+\]
+Determine whether X and Y are independent. \\
+\\
+We first need to find the marginal distribution $f_X(x)$ and $f_Y(y)$.
+\begin{equation*}
+\begin{split}
+f_X(x) & = \int_0^{\infty} f_{XY}(x,y)dy \\ 
+& = x\int_0^{\infty}y^2e^{-y}dy \\
+& = x\int_0^{\infty} -y^2de^{-y} \\
+& = \left. x(-y^2 \right|_0^{\infty} + 2\int_0^{\infty}ye^{-y}dy) \\
+& = 2x, \ \ 0<x<1
+\end{split}
+\end{equation*}
+Similarly, we can find that $$f_Y(y) = \int_0^1 f_{XY}(x,y)dx = \frac{y^2}{2}e^{-y}, \ \ 0<y<\infty$$
+So, we can get: $$f_{XY}(x,y) = f_X(x)*f_Y(y)$$, which means $X$ and $Y$ are independent.
+\\
+\\
+\textbf{Expectation and covariance}\\
+Suppose that we have two random variables X, Y and g: $R^2 \rightarrow R$ is a function of these two random variables. Then the expected value of g is defined in the following way,\\
+In discrete case: \\
+$$E[g(X,Y)] = \sum_x \sum_y g(x,y) p_{XY}(x,y)$$
+In continuous case: \\
+$$E[g(X,Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x,y) f_{XY}(x,y)dxdy$$
+And covariance is 
+$$Cov(X,Y) = E[(X - EX)(Y - EY)] = E[XY] - E[X]E[Y]$$
+When $Cov[X,Y] = 0$, then X and Y are uncorrelated.
+% BEGIN -- END DOCUMENT (OVERLEAF) --
+\newpage
+\printbibliography
+\end{document}
+% END -- END DOCUMENT (OVERLEAF) --
+
+% BEGIN -- END DOCUMENT (TEXMAKER) --
+% \bibliography{ref}{}
+% \end{document}
+% END -- END DOCUMENT (TEXMAKER) --
